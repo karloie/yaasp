@@ -5,7 +5,7 @@
 
 ## Why?
 
-Because Linux + Docker is fun and I wanted a SSH proxy jump server that can be run in read-only mode.
+Because Linux + Docker is fun and I wanted a SSH proxy jump server that could be run in read-only mode.
 
 ### Features:
 
