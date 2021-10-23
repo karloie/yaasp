@@ -43,7 +43,7 @@ karloie/yaasp   latest    2dd9c4307472   3 seconds ago    10.3MB
 
 ## Configuration
 
-Configuration is done by mounting files to the */config* directory of the container.
+Configuration is done by mounting files to the */config* directory on the container.
 
 Example with banner, host keys and two users named *karl* and *khamphat*:
 
@@ -67,7 +67,7 @@ Example with banner, host keys and two users named *karl* and *khamphat*:
 ```
 
 
-### Configure the host keys:
+### Configure server keys:
 
 Generate server keys:
 
@@ -76,7 +76,7 @@ ssh-keygen -t rsa -f config/ssh/ssh_host_rsa_key
 ssh-keygen -t ed25519 -f config/ssh/ssh_host_ed25519_key
 ```
 
-### Configure authorized_keys:
+### Configure client keys:
 
 Copy public keys to *config/home/<USER_NAME>/.ssh/authorized_keys*
 
@@ -86,7 +86,7 @@ cat ~/.ssh/id_ed25519.pub >> config/home/karl/.ssh/authorized_keys
 
 ### Configure Google Authenticator 2FA:
 
-Run the image with the ga command and configure 2FA for your device(s):
+Run the image with the *ga* command and configure 2FA for your device(s):
 
 ```sh
 docker run --rm -ti karloie/yaasp ga
@@ -107,7 +107,7 @@ ORARBPFV6CBRSYZYYK5STNOAVE
 
 ## Running
 
-Run with config:
+Run with *docker*:
 
 ```sh
 docker run \
@@ -122,9 +122,11 @@ docker run \
     -t karloie/yaasp
 ```
 
-Running with docker-compose:
+Run with *docker-compose*:
 
 ```sh
+services:
+
   yaasp:
     image: karloie/yaasp
     read_only: true
