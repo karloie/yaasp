@@ -1,10 +1,10 @@
-FROM alpine:3.13
+FROM alpine:3.15
 
 LABEL maintainer="karloie@gmail.com"
 
 RUN set -ex && \
-    apk add --no-cache openssh-server openssh-server-pam google-authenticator libqrencode && \
-    apk del alpine-keys apk-tools openssh-keygen && \
+    apk add --no-cache openssh-server-pam google-authenticator libqrencode && \
+    apk del alpine-keys apk-tools && \
     rm -rf /var/cache/apk/*
 
 ENV CFG="/etc/ssh/sshd_config"
@@ -22,7 +22,7 @@ RUN set -ex && \
     sed -ri 's/^#?PermitEmptyPasswords\s+.*/PermitEmptyPasswords no/' $CFG && \
     sed -ri 's/^#?PasswordAuthentication\s+.*/PasswordAuthentication no/' $CFG
 
-ADD sshd /etc/pam.d/
+ADD sshd /etc/pam.d/sshd.pam
 RUN set -ex && \
     # google authentication
     sed -ri 's/^#?UseDNS\s+.*/UseDNS no/' $CFG && \

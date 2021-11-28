@@ -57,7 +57,7 @@ chown -R root:root /run/ssh /run/sshd
 chmod -R 0400 /run/ssh /run/sshd
 
 # start sshd
-cmd="/usr/sbin/sshd -p $PORT -De -u0"
+cmd="/usr/sbin/sshd.pam -p $PORT -De -u0"
 if [ "$1" = "debug" ]; then
   $cmd -T
   exec $cmd -d
